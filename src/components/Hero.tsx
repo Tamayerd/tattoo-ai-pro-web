@@ -1,11 +1,18 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 // ikonlar
 import AppleIcon from '../app/assets/apple.png';
 import GoogleIcon from '../app/assets/google.png';
 import LuwLogo from '../app/assets/luwlogo.png';
+
+const backgroundImages: string[] = [
+  "/1.png","/2.png","/3.png","/4.png",
+  "/5.png","/6.png","/7.png","/8.png",
+  "/9.png","/10.png","/11.png","/12.png",
+];
 
 const Hero = () => {
   return (
@@ -13,15 +20,13 @@ const Hero = () => {
       {/* Background Images */}
       <div className="absolute inset-0 opacity-20 z-0 overflow-hidden mt-20">
         <div className="flex w-[200%] animate-marquee">
-          {[
-            "/1.png","/2.png","/3.png","/4.png",
-            "/5.png","/6.png","/7.png","/8.png",
-            "/9.png","/10.png","/11.png","/12.png",
-          ].map((src, i) => (
-            <img
+          {backgroundImages.map((src, i) => (
+            <Image
               key={i}
               src={src}
-              alt=""
+              alt={`Background ${i + 1}`}
+              width={450}
+              height={550}
               className="w-96 h-96 md:w-[450px] md:h-[550px] object-cover grayscale rounded-lg mx-3 mt-10"
             />
           ))}
@@ -44,7 +49,7 @@ const Hero = () => {
         <h3 className="text-6xl md:text-8xl font-bold text-black mb-8">
           GENERATOR
         </h3>
-        
+
         {/* Minimal Subtext */}
         <p className="text-lg md:text-2xl text-gray-600 mt-4 mb-4">
           Try tattoos on your body in{' '}
@@ -52,7 +57,6 @@ const Hero = () => {
             real time with your camera
           </span>
         </p>
-
 
         {/* Powered by */}
         <p className="text-sm md:text-base text-gray-400 mb-8 flex items-center justify-center gap-2">
@@ -65,10 +69,12 @@ const Hero = () => {
           >
             luw.ai
           </a>
-          <img
-            src={LuwLogo.src}
+          <Image
+            src={LuwLogo}
             alt="Luw Logo"
-            className="h-4 w-4 object-contain"
+            width={16}
+            height={16}
+            className="object-contain"
           />
         </p>
 
@@ -83,10 +89,12 @@ const Hero = () => {
             whileTap={{ scale: 0.95 }}
             className="flex items-center gap-3 bg-black text-white px-5 py-3 rounded-xl shadow-lg"
           >
-            <img
-              src={AppleIcon.src}
+            <Image
+              src={AppleIcon}
               alt="App Store"
-              className="w-6 h-6 filter brightness-0 invert"
+              width={24}
+              height={24}
+              className="filter brightness-0 invert"
             />
             <span className="font-medium">Download on the App Store</span>
           </motion.a>
@@ -100,10 +108,12 @@ const Hero = () => {
             whileTap={{ scale: 0.95 }}
             className="flex items-center gap-3 bg-black text-white px-5 py-3 rounded-xl shadow-lg"
           >
-            <img
-              src={GoogleIcon.src}
+            <Image
+              src={GoogleIcon}
               alt="Google Play"
-              className="w-6 h-6 filter brightness-0 invert"
+              width={24}
+              height={24}
+              className="filter brightness-0 invert"
             />
             <span className="font-medium">Get it on Google Play</span>
           </motion.a>

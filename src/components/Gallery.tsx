@@ -2,14 +2,14 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-
+import Image, { StaticImageData } from 'next/image';
 
 import image1 from '../../src/app/screenshot/1.png';
 import image2 from '../../src/app/screenshot/2.png';
 import image3 from '../../src/app/screenshot/3.png';
 
 type Shot = {
-  src: any;
+  src: StaticImageData;
   title: string;
   desc: string;
   badges?: string[];
@@ -53,8 +53,6 @@ const Gallery = () => {
   return (
     <section id="gallery" className="py-20 bg-white dark:bg-gray-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
-
-        {/* Yeni Başlık */}
         <h2 className="text-3xl md:text-4xl font-bold text-black dark:text-white">
           Explore Our Features
         </h2>
@@ -63,26 +61,30 @@ const Gallery = () => {
         </p>
       </div>
 
-      {/* Screenshots grid */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
           {screenshots.map((item, index) => (
             <div key={index} className="flex flex-col items-center text-center space-y-4">
               <motion.div
-                className="overflow-hidden rounded-2xl shadow-lg relative h-64 md:h-72 lg:h-80 cursor-pointer"
+                className="overflow-hidden rounded-2xl shadow-lg relative h-64 md:h-72 lg:h-80 cursor-pointer w-full"
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 whileHover={{ scale: 1.06 }}
                 transition={{ duration: 0.4 }}
               >
-                <motion.img
-                  src={item.src.src}
-                  alt={item.title}
-                  className="w-full h-auto min-h-full object-cover"
+                <motion.div
                   style={{ transformOrigin: 'center top' }}
                   animate={{ y: `-${hoverPos * 50}%` }}
                   transition={{ type: 'spring', stiffness: 120, damping: 20 }}
-                />
+                  className="w-full h-full relative"
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.title}
+                    fill
+                    className="object-cover w-full h-full"
+                  />
+                </motion.div>
               </motion.div>
 
               <div className="space-y-2">
