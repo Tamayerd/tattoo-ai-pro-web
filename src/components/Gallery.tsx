@@ -40,15 +40,6 @@ const screenshots: Shot[] = [
 ];
 
 const Gallery = () => {
-  const [hoverPos, setHoverPos] = useState(0);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const { top, height } = e.currentTarget.getBoundingClientRect();
-    const y = (e.clientY - top) / height;
-    setHoverPos(y);
-  };
-
-  const handleMouseLeave = () => setHoverPos(0);
 
   return (
     <section id="gallery" className="py-20 bg-white dark:bg-gray-900">
@@ -67,14 +58,12 @@ const Gallery = () => {
             <div key={index} className="flex flex-col items-center text-center space-y-4">
               <motion.div
                 className="overflow-hidden rounded-2xl shadow-lg relative h-64 md:h-72 lg:h-80 cursor-pointer w-full"
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
+
                 whileHover={{ scale: 1.06 }}
                 transition={{ duration: 0.4 }}
               >
                 <motion.div
                   style={{ transformOrigin: 'center top' }}
-                  animate={{ y: `-${hoverPos * 50}%` }}
                   transition={{ type: 'spring', stiffness: 120, damping: 20 }}
                   className="w-full h-full relative"
                 >

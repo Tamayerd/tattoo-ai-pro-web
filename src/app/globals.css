@@ -16,12 +16,15 @@
   margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
   font-family: var(--font-sans);
-  scroll-behavior: smooth;
 }
 
 
@@ -57,4 +60,13 @@ body {
 .animate-text-shimmer {
   background-size: 200% auto;
   animation: text-shimmer 3s linear infinite;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
